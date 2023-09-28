@@ -7,12 +7,7 @@ import sys
 
 
 def build_graph(dataframe):
-    """Takes the transaction dataframe and produces a directed graph structured exactly as the paper illustrates.
-    One row in the dataset is turned into two edges, one from the customer to the transaction node, and one from the transaction node to the merchant node.
-    Customer nodes have age and gender values,
-    .
-    Transaction nodes have category and amount values,
-    Merchant nodes have zipcode values
+    """Takes the transaction dataframe and produces a directed graph with customers and merchants as nodes and transactions as edges.
 
     Args:
         data_set (Dataframe): The transaction data, columns are
@@ -21,18 +16,15 @@ def build_graph(dataframe):
     Returns:
         DiGraph: A directed graph with the above properties
     """
-    G = nx.DiGraph()
+    G = nx.MultiDiGraph()
 
     for index, row in dataframe.iterrows():
-        step, customer, age, _, gender, merchant, zipMerchant, category, amount, fraud = row
+        step, customer, age, _, gender, merchant, _, category, amount, _ = row
         if customer not in G:
             G.add_node(customer, age=age, gender=gender)
         if merchant not in G:
-            G.add_node(merchant, zipcode=zipMerchant)
-        G.add_node(f'T{index}', index=index, weight=amount, category=category)
-        G.add_edge(customer, f'T{index}')
-        G.add_edge(f'T{index}', merchant)
-    
+            G.add_node(merchant)
+        G.add_edge(customer, merchant, amount=amount, category=category)
     return G
 
 def add_graph_features(feature_funcs, graph, nodes, dataframe):
@@ -60,14 +52,14 @@ def main(feature_functions, feature_names, verbose = False):
     if verbose:
         print('built graph')
 
-    # Generate a list of all of the transaction nodes
-    transaction_nodes = [n for n in transaction_graph if 'T' in n]
+    # Generate a list of all of the customer nodes
+    customer_nodes = [n for n in transaction_graph if 'C' in n]
 
     # Set graph features to generate
     graph_feature_functions = feature_functions
     
 
-    add_graph_features(graph_feature_functions, transaction_graph, transaction_nodes, transactions_df)
+    add_graph_features(graph_feature_functions, transaction_graph, customer_nodes, transactions_df)
     if verbose:
         print('Added graph features')
 
