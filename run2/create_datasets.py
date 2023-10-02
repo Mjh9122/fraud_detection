@@ -1,5 +1,5 @@
 import argparse
-import Scripts.run2.feature_functions as feature_functions
+import run2.feature_functions as feature_functions
 import networkx as nx
 import numpy as np
 import pandas as pd

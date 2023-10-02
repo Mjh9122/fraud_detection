@@ -1,5 +1,5 @@
 import argparse
-import Scripts.run1.feature_functions as feature_functions
+import run1.feature_functions as feature_functions
 import networkx as nx
 import numpy as np
 import pandas as pd
@@ -47,7 +47,6 @@ def save_data(dataframe, graph_features):
         non_graph_columns.append(feature)
         dataframe[non_graph_columns].to_csv(f'feature_csvs/transactions_{feature.replace(" ", "_")}.csv', index=False)
         non_graph_columns.remove(feature)
-
 
 def main(feature_functions, feature_names, verbose = False):
     # Read in raw transaction data

@@ -1,7 +1,7 @@
-____________
+
 # Credit Card Fraud Detection Using Graph Theoretic Features
 ## Michael Holtz
-____________
+
 ## Introduction
 This is a body of work dedicated to expanding [Prusti, Das, and Rath's](https://link.springer.com/article/10.1007/s13369-021-05682-9) work using graph theoretic measures such as degree centrality, pagerank, and LPA community detection, to improve the performance of various machine learning models on [Lopez-Rojas'](https://www.researchgate.net/publication/265736405_BankSim_A_Bank_Payment_Simulation_for_Fraud_Detection_Research) synthetic credit card transaction dataset. Early runs are dedicated to replicating the main results of the paper, while later runs seek to generate novel results by exploring other features and considering new ways of constructing the graph. This repository does not represent finished work. 
 
