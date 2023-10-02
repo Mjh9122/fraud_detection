@@ -41,6 +41,3 @@ def lpa_community(graph, nodes, dataframe):
     dataframe.assign(lpa_community = np.zeros(len(dataframe), dtype=int))
     for index, community in enumerate(lpa_communities):
         dataframe.loc[dataframe['customer'].isin(community), 'lpa_community'] = index
-
-functions = [degree_centrality, page_rank, lpa_community]
-function_names = ['degree_centrality', 'page_rank', 'lpa_community']

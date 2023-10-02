@@ -50,3 +50,6 @@ def lpa_community(graph, nodes, dataframe):
         communities[community_indices_np] = index
         # Set the community value of these indicies to the index
     dataframe['lpa_community'] = communities
+
+functions = [degree_centrality, page_rank, lpa_community]
+function_names = ['degree_centrality', 'page_rank', 'lpa_community']

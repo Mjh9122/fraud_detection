@@ -2,7 +2,6 @@ import argparse
 import run_models
 import generate_figures
 import importlib.util
-import sys
 
 def main(directory):
     # Import feature functions
