@@ -27,12 +27,12 @@ def score_model(model, X_test, y_test, map = None):
     return scores
 
 
-def main():
-    csvs = listdir('feature_csvs')
+def main(source, target):
+    csvs = listdir(source)
 
     for csv in tqdm(csvs):
         # Read in data
-        transaction_df = pd.read_csv(f'feature_csvs/{csv}')
+        transaction_df = pd.read_csv(f'{source}/{csv}')
         #Split data to x, y, train, test
         y = transaction_df['fraud']
         X = transaction_df.drop(columns=['fraud'])
@@ -92,7 +92,4 @@ def main():
             'IF': ISO_scores
             }
         scores_df = pd.DataFrame(scores).T * 100
-        scores_df.to_csv(f'scores/{csv.replace("transactions", "scores")}')
-
-if __name__ == '__main__':
-    main()
+        scores_df.to_csv(f'{target}/{csv.replace("transactions", "scores")}')
