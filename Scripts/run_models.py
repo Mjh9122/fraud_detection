@@ -42,7 +42,7 @@ def main(source, target):
         transformer = ColumnTransformer([('One Hot Encoder', OneHotEncoder(drop='first'), ['category', 'gender']),
                                  ('Age Pipe', Pipeline([('ord', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)), ('scale', MinMaxScaler())]), ['age']),
                                  ('MinMaxScaler', MinMaxScaler(), ['amount', 'step']),
-                                 ('drop', 'drop', ['zipcodeOri', 'zipMerchant', 'customer', 'merchant'])], remainder = MinMaxScaler())
+                                 ('drop', 'drop', ['zipcodeOri', 'zipMerchant', 'customer', 'merchant'])], remainder = MinMaxScaler(), sparse_threshold=0)
         transformer.fit(X_train)
 
         #Build and score models
