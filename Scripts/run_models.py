@@ -1,18 +1,14 @@
+import argparse
 import pandas as pd
 import numpy as np
 
 from os import listdir
-from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier, IsolationForest
 from sklearn.metrics import f1_score, accuracy_score, matthews_corrcoef, precision_score, roc_auc_score, recall_score, average_precision_score
-from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier, LocalOutlierFactor
 from sklearn.neural_network import MLPClassifier
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, MinMaxScaler
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
-from tqdm import tqdm
 
 def score_model(model, X_test, y_test, map = None):
     model_preds = model.predict(X_test)
@@ -27,60 +23,89 @@ def score_model(model, X_test, y_test, map = None):
     return scores
 
 
-def main(source, target):
+def main(source, target, verbose):
+    # Read in data from source directory
     csvs = listdir(source)
+    assert 'y_train.csv' in csvs
+    y_train = pd.read_csv(f'{source}/y_train.csv', header=None).to_numpy().ravel()
+    csvs.remove('y_train.csv')
+    assert 'y_test.csv' in csvs
+    y_test = pd.read_csv(f'{source}/y_test.csv', header=None).to_numpy().ravel()
+    csvs.remove('y_test.csv')
+    
+    X_trains = sorted([f for f in csvs if 'train' in f])
+    X_tests = sorted([f for f in csvs if 'test' in f])
+    xs = list(zip(X_trains, X_tests))
 
-    for csv in tqdm(csvs):
-        # Read in data
-        transaction_df = pd.read_csv(f'{source}/{csv}')
-        #Split data to x, y, train, test
-        y = transaction_df['fraud']
-        X = transaction_df.drop(columns=['fraud'])
-        X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42)
+    if verbose:
+        print('\n-----------------------\ntrain/test files found:\n-----------------------')
+        for train, test in xs:
+            print(train[:-4], test[:-4])
 
-        #Fit transformer to data
-        transformer = ColumnTransformer([('One Hot Encoder', OneHotEncoder(drop='first'), ['category', 'gender']),
-                                 ('Age Pipe', Pipeline([('ord', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1)), ('scale', MinMaxScaler())]), ['age']),
-                                 ('MinMaxScaler', MinMaxScaler(), ['amount', 'step']),
-                                 ('drop', 'drop', ['zipcodeOri', 'zipMerchant', 'customer', 'merchant'])], remainder = MinMaxScaler(), sparse_threshold=0)
-        transformer.fit(X_train)
+    for X_train_csv, X_test_csv in xs:
+        X_train = pd.read_csv(f'{source}/{X_train_csv}', header=None).to_numpy()
+        X_test = pd.read_csv(f'{source}/{X_test_csv}', header=None).to_numpy()
 
-        #Build and score models
+        
+        if verbose:
+            print(f'\n-----------------------\nRunning 7 Models on {X_train_csv[:-10]}\n-----------------------')
 
-        #Decision Tree
-        decision_tree = Pipeline(steps=[('transformer', transformer), ('model', DecisionTreeClassifier(random_state=42))])
+
+        # Decision Tree
+        decision_tree =  DecisionTreeClassifier(random_state=42)
         decision_tree.fit(X_train, y_train)
         desc_tree_scores = score_model(decision_tree, X_test, y_test)
 
+        if verbose:
+            print('Decision Tree')
+
         # Random Forest
-        random_forest = Pipeline(steps=[('transformer', transformer), ('model', RandomForestClassifier(random_state=42))])
+        random_forest = RandomForestClassifier(random_state=42, n_jobs=-1)
         random_forest.fit(X_train, y_train)
         random_forest_scores = score_model(random_forest, X_test, y_test)
+        
+        if verbose:
+            print('Random Forest')
 
         # KNN
-        KNN = Pipeline(steps=[('transformer', transformer), ('model', KNeighborsClassifier())])
+        KNN = KNeighborsClassifier(n_jobs=-1)
         KNN.fit(X_train, y_train)
         KNN_scores = score_model(KNN, X_test, y_test)
 
-        #Multilayer perceptron
-        MLP = Pipeline(steps=[('transformer', transformer), ('model', MLPClassifier(hidden_layer_sizes=(15, 15, 15), random_state=42))])
+        if verbose:
+            print('K-NN')
+
+        # Multilayer perceptron
+        MLP =  MLPClassifier(hidden_layer_sizes=(15, 15, 15), random_state=42)
         MLP.fit(X_train, y_train)
         MLP_scores = score_model(MLP, X_test, y_test)
 
-        #Support Vector machine
-        SVM = Pipeline(steps=[('transformer', transformer), ('model', SVC(class_weight='balanced', random_state=42))])
+        if verbose:
+            print('MLP')
+
+        # Support Vector machine
+        SVM = SVC(random_state=42)
         SVM.fit(X_train, y_train)
         SVM_scores = score_model(SVM, X_test, y_test)
 
-        #Isolation forest
-        ISO = Pipeline(steps=[('transformer', transformer), ('model', IsolationForest(contamination=sum(y_train)/len(y_train), random_state=42))])
+        if verbose:
+            print('SVM')
+
+        # Isolation forest
+        ISO = IsolationForest(contamination=sum(y_train)/len(y_train), random_state=42, n_jobs=-1)
         ISO.fit(X_train, y_train)
         ISO_scores = score_model(ISO, X_test, y_test, map={1:0, -1:1})
 
-        #Local Outlier Factor
-        LOF = Pipeline(steps=[('transformer', transformer), ('model', LocalOutlierFactor(n_neighbors=10, novelty=True, contamination=sum(y_train)/len(y_train)))])
+        if verbose:
+            print('Isolation Forest')
+
+        # Local Outlier Factor
+        LOF = LocalOutlierFactor(n_neighbors=100, novelty=True, contamination=sum(y_train)/len(y_train))
         LOF.fit(X_train, y_train)
         LOF_scores = score_model(LOF, X_test, y_test, map={1:0, -1:1})
+
+        if verbose:
+            print('Local Outlier Factor')
 
         scores = {
             'Decision Tree': desc_tree_scores,
@@ -92,4 +117,12 @@ def main(source, target):
             'IF': ISO_scores
             }
         scores_df = pd.DataFrame(scores).T * 100
-        scores_df.to_csv(f'{target}/{csv.replace("transactions", "scores")}')
+        scores_df.to_csv(f'{target}/{X_train_csv.replace("train", "scores")}')
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('source')
+    parser.add_argument('target')
+    parser.add_argument('-v', '--verbose', action='store_true', default=False)
+    args = parser.parse_args()
+    main(args.source, args.target, args.verbose)
