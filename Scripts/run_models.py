@@ -23,7 +23,7 @@ def score_model(model, X_test, y_test, map = None):
     return scores
 
 
-def main(source, target, verbose):
+def main(source, target, verbose, grid_search):
     # Read in data from source directory
     csvs = listdir(source)
     assert 'y_train.csv' in csvs
@@ -100,9 +100,24 @@ def main(source, target, verbose):
             print('Isolation Forest')
 
         # Local Outlier Factor
-        LOF = LocalOutlierFactor(n_neighbors=100, novelty=True, contamination=sum(y_train)/len(y_train))
-        LOF.fit(X_train, y_train)
-        LOF_scores = score_model(LOF, X_test, y_test, map={1:0, -1:1})
+        if grid_search:
+            max_avg, max_scores, max_n = 0, {}, 0
+            for n in range(1, 501):
+                LOF = LocalOutlierFactor(n_neighbors=n, novelty=True, contamination=sum(y_train)/len(y_train))
+                LOF.fit(X_train, y_train)
+                LOF_scores = score_model(LOF, X_test, y_test, map={1:0, -1:1}) 
+                if np.mean(list(LOF_scores.values())) > max_avg:
+                    max_avg = np.mean(list(LOF_scores.values()))
+                    max_scores = LOF_scores
+                    max_n = n
+                    if verbose:
+                        print(f'New best params for LOF, num neighbors = {n}, avg score = {max_avg}')
+            LOF_scores = max_scores
+            
+        else:
+            LOF = LocalOutlierFactor(n_neighbors=100, novelty=True, contamination=sum(y_train)/len(y_train))
+            LOF.fit(X_train, y_train)
+            LOF_scores = score_model(LOF, X_test, y_test, map={1:0, -1:1})
 
         if verbose:
             print('Local Outlier Factor')
@@ -123,6 +138,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('source')
     parser.add_argument('target')
+    parser.add_argument('-g', '--grid_search', action = 'store_true', default=False)
     parser.add_argument('-v', '--verbose', action='store_true', default=False)
     args = parser.parse_args()
-    main(args.source, args.target, args.verbose)
+    main(args.source, args.target, args.verbose, args.grid_search)

@@ -7,7 +7,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from os import listdir
 
-def plot_scores(scores, target):
+def plot_scores(scores, target, title):
     df = pd.concat(scores, axis = 0)
     fig, axs = plt.subplots(2, 4, figsize=(20, 10))
     sns.barplot(data=df, x=df.index, y='Decision Tree', hue='hue', ax=axs[0, 0])
@@ -20,17 +20,17 @@ def plot_scores(scores, target):
     for row in range(2):
         for col in range(4):
             axs[row, col].tick_params(axis = 'x', rotation = 30)
-    plt.suptitle('Average percent score increase')
-    plt.savefig(f'{target}/score_comparison.png')
+    plt.suptitle(title)
+    plt.savefig(f'{target}/{title.replace(" ", "_")}.png')
 
 
-def main(source, target, comparison = 'none'):
+def main(source, target, title):
     scores = []
     for score_file in listdir(source):
         score_df = pd.read_csv(f'{source}/{score_file}', index_col=0, header=0).T
         score_df['hue'] = score_file[:-11]
         scores.append(score_df)
-    plot_scores(scores=scores, target = target)
+    plot_scores(scores=scores, target = target, title = title)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -39,5 +39,6 @@ if __name__ == '__main__':
     )
     parser.add_argument('source_directory_path')
     parser.add_argument('target_directory_path')
+    parser.add_argument('title')
     args = parser.parse_args()
-    main(args.source_directory_path, args.target_directory_path)
+    main(args.source_directory_path, args.target_directory_path, args.title)
