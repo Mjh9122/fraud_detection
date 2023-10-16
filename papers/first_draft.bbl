@@ -40,4 +40,7 @@ D.~Prusti, D.~Das, and S.~K. Rath, ``Credit card fraud detection technique by ap
 \bibitem{Banksim}
 E.~A. Lopez-Rojas and S.~Axelsson, ``Banksim: A bank payment simulation for fraud detection research,'' in \emph{26th European Modeling and Simulation Symposium, EMSS 2014}, 09 2014.
 
+\bibitem{New_metric}
+A.~C. Bahnsen, A.~Stojanovic, D.~Aouada, and B.~Ottersten, ``Cost sensitive credit card fraud detection using bayes minimum risk,'' in \emph{2013 12th International Conference on Machine Learning and Applications}, vol.~1, 2013, pp. 333--338.
+
 \end{thebibliography}

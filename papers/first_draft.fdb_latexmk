@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex first_draft"] 0 "first_draft.aux" "first_draft.bbl" "first_draft" 1697427226 -1
+["bibtex first_draft"] 1697428561 "first_draft.aux" "first_draft.bbl" "first_draft" 1697428563 0
   "./bibliography.bib" 1697425602 2134 418480bdd3a683deb33ccf30694762bb ""
   "c:/texlive/2023/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1697386517 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "first_draft.aux" 1697427225 550 b024f26154007b404afa9eb4993330ba "pdflatex"
+  "first_draft.aux" 1697428562 577 726d8da5d7a1f46a82b1826f7ee66966 "pdflatex"
   (generated)
   "first_draft.bbl"
   "first_draft.blg"
   (rewritten before read)
-["pdflatex"] 1697427225 "c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex" "first_draft.pdf" "first_draft" 1697427226 0
-  "c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex" 1697427224 4034 6799efc7585e7bd73d623e37a9658812 ""
+["pdflatex"] 1697428562 "c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex" "first_draft.pdf" "first_draft" 1697428563 0
+  "c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex" 1697428557 4037 20509193b96fd55560ffab37ac34a540 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1697385984 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1697383544 1004 54797486969f23fa377b128694d548df ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1697383544 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -55,9 +55,9 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1697390541 4750288 3c81ae0e61ea5051a9e1e981a6246c40 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1697390631 8195424 1780b6ce2519e5fa5e58d175c5000b18 ""
   "c:/texlive/2023/texmf.cnf" 1697390526 713 e69b156964470283e0530f5060668171 ""
-  "first_draft.aux" 1697427225 550 b024f26154007b404afa9eb4993330ba "pdflatex"
-  "first_draft.bbl" 1697426538 2002 b12e8c9e48d79cb2a865e53da60c37c3 "bibtex first_draft"
-  "first_draft.tex" 1697427224 4034 6799efc7585e7bd73d623e37a9658812 ""
+  "first_draft.aux" 1697428562 577 726d8da5d7a1f46a82b1826f7ee66966 "pdflatex"
+  "first_draft.bbl" 1697428562 2267 d9ed18c76c623227259188cae004cb3e "bibtex first_draft"
+  "first_draft.tex" 1697428557 4037 20509193b96fd55560ffab37ac34a540 ""
   (generated)
   "first_draft.aux"
   "first_draft.log"
