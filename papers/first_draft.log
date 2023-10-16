@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.15)  15 OCT 2023 15:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.15)  15 OCT 2023 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex
-(c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex
+**c:/Users/Micha/Documents/GitHub/fraud_detection/papers/first_draft.tex
+(c:/Users/Micha/Documents/GitHub/fraud_detection/papers/first_draft.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-10>
 (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -97,14 +97,14 @@ L3 programming layer <2023-10-10>
  ) 
 Here is how much of TeX's memory you used:
  1314 strings out of 474504
- 21501 string characters out of 5756725
- 1927043 words of memory out of 5000000
+ 21474 string characters out of 5756725
+ 1926043 words of memory out of 5000000
  23320 multiletter control sequences out of 15000+600000
  562055 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,1115b,237s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,6n,65p,1105b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on first_draft.pdf (2 pages, 78686 bytes).
+Output written on first_draft.pdf (2 pages, 79369 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream

@@ -1,8 +1,8 @@
-PWD c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers
+PWD c:/Users/Micha/Documents/GitHub/fraud_detection/papers
 INPUT c:/texlive/2023/texmf.cnf
 INPUT c:/texlive/2023/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex
+INPUT c:/Users/Micha/Documents/GitHub/fraud_detection/papers/first_draft.tex
 OUTPUT first_draft.log
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
