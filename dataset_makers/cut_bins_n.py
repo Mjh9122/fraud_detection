@@ -14,9 +14,9 @@ def main(cuts):
     #Split data to train, test
     train, test = train_test_split(transaction_df, random_state=42)
     
-    mechant_fraud_rate = pd.cut(train.groupby('merchant').mean('fraud')['fraud'], bins = cuts, labels=range(cuts))
-    train['merchant fraud rate'] = train['merchant'].apply(lambda x: mechant_fraud_rate.get(x))
-    test['merchant fraud rate'] = test['merchant'].apply(lambda x: mechant_fraud_rate.get(x))
+    merchant_fraud_rate = pd.cut(train.groupby('merchant').mean('fraud')['fraud'], bins = cuts, labels=range(cuts))
+    train['merchant fraud rate'] = train['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
+    test['merchant fraud rate'] = test['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
     
     customer_previous_fraud = pd.cut(train.groupby('customer').mean('fraud')['fraud'], bins = cuts, labels=range(cuts))
     train['previous fraud'] = train['customer'].apply(lambda x: customer_previous_fraud.get(x))
