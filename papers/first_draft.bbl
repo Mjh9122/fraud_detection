@@ -34,9 +34,6 @@ Ghosh and Reilly, ``Credit card fraud detection with a neural-network,'' in \emp
 F.~Reserve, ``Federal reserve payments study (frps),'' Jul 2023. [Online]. Available: \url{https://www.federalreserve.gov/paymentsystems/fr-payments-study.htm}
 \BIBentrySTDinterwordspacing
 
-\bibitem{graphdb}
-D.~Prusti, D.~Das, and S.~K. Rath, ``Credit card fraud detection technique by applying graph database model.'' \emph{Arabian Journal for Science and Engineering}, vol.~46, no. 1-20, 2021.
-
 \bibitem{Banksim}
 E.~A. Lopez-Rojas and S.~Axelsson, ``Banksim: A bank payment simulation for fraud detection research,'' in \emph{26th European Modeling and Simulation Symposium, EMSS 2014}, 09 2014.
 
