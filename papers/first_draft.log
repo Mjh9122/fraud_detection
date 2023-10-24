@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.15)  19 OCT 2023 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.15)  23 OCT 2023 10:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex
-(c:/Users/Micha/OneDrive/Documents/GitHub/fraud_detection/papers/first_draft.tex
+**c:/Users/Micha/Documents/GitHub/fraud_detection/papers/first_draft.tex
+(c:/Users/Micha/Documents/GitHub/fraud_detection/papers/first_draft.tex
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-10-10>
 (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -170,14 +170,14 @@ L3 programming layer <2023-10-10>
  ) 
 Here is how much of TeX's memory you used:
  2280 strings out of 474504
- 33734 string characters out of 5756725
+ 33707 string characters out of 5756725
  1929043 words of memory out of 5000000
  24264 multiletter control sequences out of 15000+600000
  563183 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,1180b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,1171b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on first_draft.pdf (3 pages, 110733 bytes).
+Output written on first_draft.pdf (3 pages, 110401 bytes).
 PDF statistics:
  54 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream
