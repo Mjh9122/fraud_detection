@@ -12,32 +12,28 @@
 \maketitle
 
 \section{Abstract}
-In 2022, the Federal Trade Commission received over 440,000 reports of credit card fraud, an increase of over 50,000 over the previous year \cite{ftc2021,ftc2022}. The annual cost of credit card fraud in the United States has been estimated at XXXXXXX. These factors have lead researchers and institutions to develop novel techniques to detect credit card fraud. Using machine learning techniques to identify fraudulent transactions has been an area of research since at least 1994 and has been a hot topic as of late as the number of credit card transactions continues to rise year over year \cite{1994, Federal_Reserve_2023}. 
 \section{Introduction}
-Credit card data is some of the most regulated data in the world. Finding quality datasets, even for academic use, is nearly impossible. In an attempt to solve this, some have turned to simulations such as BankSim\cite{Banksim}. These simulations start with real anonymized transaction data and simulate a market of buyers, sellers, and fraudsters such that the resulting transactions contain the same fraud indicators as the real world data. The resulting dataset can be freely used and shared as it does not contain any private information. 
-
-Prusti, Das, and Rath used the BankSim simulation dataset to train several machine learning models, first on features derived directly from the transactions, and secondly on features derived from a graph model of the transactions. They found that the graph features, degree centrality, PageRank, and label propagation algorithm (LPA) community improved the performance of the models significantly. They measured each model on several well known classification metrics, accuracy, precision, recall, Mathews corelation coefficient, ROC-AUC, and AUPRC. 
-
-While replicating their study, we found a similar increase for each feature and each metric. It is worth noting that we did not use a graph database, as the dataset is small enough to fit easily in memory, allowing for much quicker calculation. 
-
-We also included a measure specifically designed for credit card fraud models \cite{New_metric}. While most metrics treat false positives and false negatives in the same way, this cost sensitive measure seeks to more closely represent the cost that a credit card company must pay for each resulting. True negatives or legitimate transactions that are classified as legitimate transactions result in no cost to the company. False positives, or normal transactions that are flagged as fraudulent, incur some flat cost $C_a$, associated with the cost of investigating the transaction manually and contacting the cardholder. True positives, fraudulent transactions correctly identified as such, incur the same cost $C_a$. False negatives are fraudulent transactions that were mistakenly identified as legitimate. In this case the company looses the amount of the transaction. We can visualize these costs in a cost matrix, with $C_a$ being the administrative cost associated with handling a suspected fraud and $Amt_i$ being the amount transaction in the i-th transaction classified. 
-
-\[
-\begin{blockarray}{ccc}
-& \text{True Fraud} & \text{True Legitimate} \\
-\begin{block}{c[cc]}
-  \text{Predicted Fraud} & C_a & C_a\\
-  \text {Predicted Legitimate} & Amt_i & 0 \\
-\end{block}
-\end{blockarray}
-\]
+\subsection*{Importance of Problem}
+\subsection*{Difficulties inherent to problem}
+\subsection*{Turning transactions into a network}
+\subsection*{New Features + MRMR}
+\subsection*{Uniqueness of paper}
 
 \section{Related Work}
+\subsection*{Prusti}
+\subsection*{Banksim}
+\subsection*{Cost sensitive loss}
 
 \section{Methodology}
-
+\subsection*{Graph Model}
 \section{Dataset and Experimental Setup}
-
+\subsection*{Banksim EDA}
+\subsection*{Features from transactional Data}
+\subsection*{Graph Feature Definition}
+\subsection*{MRMR Feature Selection}
+\subsection*{ML Models}
+\subsection*{Metrics}
+\subsection*{Pipeline}
 \section{Results}
 
 \section{Conclusions and Future Work}
