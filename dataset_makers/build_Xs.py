@@ -9,7 +9,7 @@ from sklearn.preprocessing import  MinMaxScaler
 def build_Xs(original, graph_features, cuts):
     df = pd.read_csv(original)
     df.replace("'",'', regex=True, inplace=True) 
-    df = df.join(graph_features, on='step')
+    df = pd.concat([df,graph_features], axis=1)
     #Drop unused columns
     df.drop(columns = ['step', 'age', 'gender', 'zipcodeOri', 'zipMerchant'], inplace=True)
     #Split data to train, test
