@@ -201,8 +201,8 @@ def main(source, target, verbose, grid_search):
             print(train[:-4], test[:-4])
 
     for X_train_csv, X_test_csv in xs:
-        X_train = pd.read_csv(f'{source}/{X_train_csv}', header=None).to_numpy()
-        X_test = pd.read_csv(f'{source}/{X_test_csv}', header=None).to_numpy()
+        X_train = pd.read_csv(f'{source}/{X_train_csv}').to_numpy()
+        X_test = pd.read_csv(f'{source}/{X_test_csv}').to_numpy()
 
         
         if verbose:

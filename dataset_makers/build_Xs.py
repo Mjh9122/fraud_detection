@@ -37,9 +37,9 @@ def build_Xs(original, graph_features, cuts):
     X_train_transformed = MMscaler.fit_transform(X_train)
     X_test_transformed = MMscaler.transform(X_test)
     
-    X_train_df = pd.DataFrame(X_train_transformed)
+    X_train_df = pd.DataFrame(X_train_transformed, columns=X_train.columns)
     
-    X_test_df = pd.DataFrame(X_test_transformed)
+    X_test_df = pd.DataFrame(X_test_transformed, columns=X_test.columns)
     
     return X_train_df, X_test_df
 
