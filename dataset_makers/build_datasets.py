@@ -61,9 +61,9 @@ def add_standard_feature(G, df, func, name, weighted = False, merchant = True, c
 
     if customer:
         if weighted:
-            df['f{name}_w_customer'] = df['customer'].apply(lambda x: feature_dict.get(x))
+            df[f'{name}_w_customer'] = df['customer'].apply(lambda x: feature_dict.get(x))
         else:
-            df['f{name}_customer'] = df['customer'].apply(lambda x: feature_dict.get(x))
+            df[f'{name}_customer'] = df['customer'].apply(lambda x: feature_dict.get(x))
 
     return df
 

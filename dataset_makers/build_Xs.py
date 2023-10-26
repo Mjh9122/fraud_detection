@@ -16,16 +16,16 @@ def build_Xs(original, graph_features, cuts):
     train, test = train_test_split(df, random_state=42)
     
     merchant_fraud_rate = pd.cut(train.groupby('merchant').mean('fraud')['fraud'], cuts[0], labels=False)
-    train['merchant fraud rate'] = train['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
-    test['merchant fraud rate'] = test['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
+    train['merchant_fraud_rate'] = train['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
+    test['merchant_fraud_rate'] = test['merchant'].apply(lambda x: merchant_fraud_rate.get(x))
     
     customer_previous_fraud = pd.cut(train.groupby('customer').mean('fraud')['fraud'], cuts[1], labels=False)
-    train['previous fraud'] = train['customer'].apply(lambda x: customer_previous_fraud.get(x))
-    test['previous fraud'] = test['customer'].apply(lambda x: customer_previous_fraud.get(x))
+    train['customer_fraud_rate'] = train['customer'].apply(lambda x: customer_previous_fraud.get(x))
+    test['customer_fraud_rate'] = test['customer'].apply(lambda x: customer_previous_fraud.get(x))
     
     category_fraud_rate = pd.cut(train.groupby('category').mean('fraud')['fraud'], cuts[2], labels=False)
-    train['category fraud rate'] = train['category'].apply(lambda x: category_fraud_rate.get(x))
-    test['category fraud rate'] = test['category'].apply(lambda x: category_fraud_rate.get(x))
+    train['category_fraud_rate'] = train['category'].apply(lambda x: category_fraud_rate.get(x))
+    test['category_fraud_rate'] = test['category'].apply(lambda x: category_fraud_rate.get(x))
     
     train.drop(columns=['customer', 'merchant', 'category'], inplace=True)
     test.drop(columns=['customer', 'merchant', 'category'], inplace=True)
