@@ -70,12 +70,12 @@ def add_standard_feature(G, df, func, name, weighted = False, merchant = True, c
 def main(feature_set): 
     
     if feature_set == 'none':
-        X_train, X_test = build_Xs('dataset_makers/original_data.csv', pd.DataFrame(), [2, 3, 2])
-        X_train.to_csv('active_datasets/transactional_features_train.csv', index = False)
-        X_test.to_csv('active_datasets/transactional_features_test.csv', index = False)
+        X_train, X_test = build_Xs('../dataset_makers/original_data.csv', pd.DataFrame(), [2, 3, 2])
+        X_train.to_csv('../active_datasets/transactional_features_train.csv', index = False)
+        X_test.to_csv('../active_datasets/transactional_features_test.csv', index = False)
     else:
-        G = build_graph('dataset_makers\original_data.csv')
-        df = pd.read_csv('dataset_makers\original_data.csv')
+        G = build_graph('../dataset_makers/original_data.csv')
+        df = pd.read_csv('../dataset_makers/original_data.csv')
         df.drop(columns=['step', 'age', 'gender', 'zipcodeOri', 'zipMerchant', 'category', 'fraud'], inplace=True)
         df.replace("'",'', regex=True, inplace=True) 
         if feature_set == 'original':
@@ -83,9 +83,9 @@ def main(feature_set):
             df = get_lpa_communities_weighted(G, df)
             df = add_standard_feature(G, df, nx.pagerank, 'page_rank')
             df.drop(columns=['customer', 'merchant', 'amount'], inplace=True)
-            X_train, X_test = build_Xs('dataset_makers/original_data.csv', graph_features=df, cuts = [2, 3, 2])
-            X_train.to_csv('active_datasets/original_paper_features_train.csv', index = False)
-            X_test.to_csv('active_datasets/original_paper_features_test.csv', index = False)
+            X_train, X_test = build_Xs('../dataset_makers/original_data.csv', graph_features=df, cuts = [2, 3, 2])
+            X_train.to_csv('../active_datasets/original_paper_features_train.csv', index = False)
+            X_test.to_csv('../active_datasets/original_paper_features_test.csv', index = False)
         else:
             df = add_standard_feature(G, df, nx.degree_centrality, 'degree_centrality', False)
             print("1/12")
@@ -112,9 +112,9 @@ def main(feature_set):
             df = add_standard_feature(G, df, nx.centrality.laplacian_centrality, 'laplacian_centrality', True)
             print('12/12')
             df.drop(columns =['customer', 'merchant', 'amount'], inplace=True)
-            X_train, X_test = build_Xs('dataset_makers/original_data.csv', graph_features=df, cuts = [2, 3, 2])
-            X_train.to_csv('active_datasets/all_features_train.csv', index = False)
-            X_test.to_csv('active_datasets/all_features_test.csv', index = False)
+            X_train, X_test = build_Xs('../dataset_makers/original_data.csv', graph_features=df, cuts = [2, 3, 2])
+            X_train.to_csv('../active_datasets/all_features_train.csv', index = False)
+            X_test.to_csv('../active_datasets/all_features_test.csv', index = False)
 
 
     #nx.write_graphml(G, './dataset_makers/graph.graphml')
